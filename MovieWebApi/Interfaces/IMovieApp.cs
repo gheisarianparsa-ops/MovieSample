@@ -2,7 +2,7 @@
 {
     public interface IMovieApp<T> where T : class
     {
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsyncJoin();
         Task<T> GetByIdAsync(int id);
         Task<T> CreateAsync(T entity);
         Task<T> UpdateAsync(int id, T entity);

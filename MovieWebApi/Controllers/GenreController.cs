@@ -18,7 +18,7 @@ namespace MovieWebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GenreModel>>> GetAllGenre()
         {
-            return Ok(await _GenreRepositoy.GetAllAsync());
+            return Ok(await _GenreRepositoy.GetAllAsyncJoin());
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<GenreModel>>> GetGenre(int id)
@@ -58,7 +58,7 @@ namespace MovieWebApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-            _GenreRepositoy.CreateAsync(genre);
+           await _GenreRepositoy.CreateAsync(genre);
             return Ok(genre);
         }
     }

@@ -19,7 +19,7 @@ namespace MovieWebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MovieModel>>> GetAllMovie()
         {
-            return Ok(await _movieRepositoy.GetAllAsync());
+            return Ok(await _movieRepositoy.GetAllAsyncJoin());
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<MovieModel>>> GetMovie(int id)
@@ -53,13 +53,13 @@ namespace MovieWebApi.Controllers
             return Ok(UpdatedMovie);
         }
         [HttpPost]
-        public async Task<ActionResult<MovieModel>> InsertMovie(MovieModel movie)
+        public async Task<ActionResult<MovieModel>> InsertMovie([FromBody] MovieModel movie)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            _movieRepositoy.CreateAsync(movie);
+           await _movieRepositoy.CreateAsync(movie);
             return Ok(movie);
         }
     }

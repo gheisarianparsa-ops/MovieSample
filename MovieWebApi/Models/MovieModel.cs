@@ -1,4 +1,6 @@
-﻿namespace MovieWebApi.Models
+﻿using System.Text.Json.Serialization;
+
+namespace MovieWebApi.Models
 {
     public class MovieModel
     {
@@ -7,6 +9,7 @@
         public string Description { get; set; }
         public decimal ImdbRate { get; set; }
         public int GenreId { get; set; }
-        public GenreModel Genre { get; set; }
+        [JsonIgnore]
+        public GenreModel? Genre { get; set; }
     }
 }

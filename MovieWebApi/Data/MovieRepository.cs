@@ -14,7 +14,7 @@ namespace MovieWebApi.Data
         public async Task<MovieModel> CreateAsync(MovieModel entity)
         {
            
-            _dbContext.AddAsync(entity);
+            await _dbContext.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
             return entity;
         }
@@ -41,7 +41,7 @@ namespace MovieWebApi.Data
             return true;
         }
 
-        public async Task<IEnumerable<GetAllMovieDto>> GetAllAsyncJoin()
+        public async Task<IEnumerable<GetAllMovieDto>> GetAllAsyncJoinId()
         {
             return await _dbContext.Movies.Include(m=>m.Genre).Select(q=>new GetAllMovieDto
             {
@@ -76,7 +76,7 @@ namespace MovieWebApi.Data
             return existingMovie;
         }
 
-        Task<IEnumerable<MovieModel>> IMovieApp<MovieModel>.GetAllAsync()
+        Task<IEnumerable<MovieModel>> IMovieApp<MovieModel>.GetAllAsyncJoin()
         {
             throw new NotImplementedException();
         }

@@ -13,7 +13,7 @@ namespace MovieWebApi.Data
         }
         public async Task<GenreModel> CreateAsync(GenreModel entity)
         {
-            _dbContext.AddAsync(entity);
+            await _dbContext.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
             return entity;
         }
@@ -40,7 +40,7 @@ namespace MovieWebApi.Data
             return true;
         }
 
-        public async Task<IEnumerable<GenreModel>> GetAllAsync()
+        public async Task<IEnumerable<GenreModel>> GetAllAsyncJoin()
         {
             return await _dbContext.Genres.ToListAsync();
         }
